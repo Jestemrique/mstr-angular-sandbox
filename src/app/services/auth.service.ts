@@ -10,9 +10,7 @@ export class AuthService {
   //TODO: Remove api url from here and set it apart.
   private mstrUrl = 'http://10.23.3.162:8080/MicroStrategyLibrary/api/auth/login';
 
-
-
-  
+ 
   constructor(private http: HttpClient) { }
 
   login(userLogin: ILogin): Observable<any> {
@@ -29,6 +27,11 @@ export class AuthService {
         tap( data => console.log('All', 'doLogin method called!') ),
         catchError(this.handleError)
       );
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('authToken');
+    return authToken !== null ? true : false;
   }
 
   handleError(err: HttpErrorResponse) {
