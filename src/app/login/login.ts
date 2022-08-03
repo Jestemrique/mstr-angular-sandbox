@@ -1,0 +1,16 @@
+export interface ILogin {
+    username: string,
+    password: string,
+    loginMode: number,
+    maxSearch: number,
+    workingSet: number,
+    changePassword: Boolean,
+    newPassword: string,
+    metadataLocale: string,
+    warehouseDataLocale: string,
+    displayLocale: string,
+    messagesLocale: string,
+    numberLocale: string,
+    timeZone: string,
+    applicationType: number,
+}
