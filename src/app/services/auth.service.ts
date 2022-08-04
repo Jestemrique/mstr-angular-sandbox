@@ -16,6 +16,10 @@ export class AuthService {
   login(userLogin: ILogin): Observable<any> {
     console.log(`username: ${userLogin.username} -- Password: ${userLogin.password}`);
     const headers = { 'content-type': 'application/json', 'accept': 'application/json' };
+    
+    //const headers = new Headers();
+    //headers.set('content-type','application/json');
+    //headers.set('accept', 'application/json');
     const body = JSON.stringify(userLogin);
     const httpOptions: any = {
       headers: headers,
@@ -30,7 +34,7 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('authToken');
+    let authToken = localStorage.getItem('session_token');
     return authToken !== null ? true : false;
   }
 

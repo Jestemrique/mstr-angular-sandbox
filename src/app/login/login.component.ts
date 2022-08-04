@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.subscription = this.authService.login(this.userLogin).subscribe({
       next: response => {
         console.log(`Auth token: ${response.headers.get('X-MSTR-AuthToken')}`)
+        
       }
     });
   }
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   ngOnDestroy(): void{
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
 }
