@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { ILogin } from "../login/login";
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { UserService } from './user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private mstrUrl = 'http://10.23.3.162:8080/MicroStrategyLibrary/api/auth/login';
 
  
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private user: UserService) { }
 
   login(userLogin: ILogin): Observable<any> {
     console.log(`username: ${userLogin.username} -- Password: ${userLogin.password}`);
@@ -33,10 +34,6 @@ export class AuthService {
       );
   }
 
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('session_token');
-    return authToken !== null ? true : false;
-  }
 
   handleError(err: HttpErrorResponse) {
     let errorMessage = '';

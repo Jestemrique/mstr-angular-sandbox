@@ -15,6 +15,9 @@
             <a class="button is-light" routerLink='/login'>
               Log in
             </a>
+            <a *ngIf="showLogoutButton == true" class="button is-light" routerLink='/logout'>
+              Log out
+            </a>
           </div>
         </div>
       </div>

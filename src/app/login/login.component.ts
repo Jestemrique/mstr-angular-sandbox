@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl,  Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user/user.service';
 import { ILogin } from './login';
 
 @Component({
@@ -35,7 +37,10 @@ export class LoginComponent implements OnInit {
     "password": new FormControl(""),
   });
 
-  constructor(private authService: AuthService){}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private user:UserService ) {}
 
   submit() {
     //TODO: validate username and password at form level before sumitting to login.
@@ -44,7 +49,8 @@ export class LoginComponent implements OnInit {
     this.subscription = this.authService.login(this.userLogin).subscribe({
       next: response => {
         console.log(`Auth token: ${response.headers.get('X-MSTR-AuthToken')}`)
-        
+        localStorage.setItem('session_token', response.headers.get('X-MSTR-AuthToken'));
+        this.router.navigate(['/desktop']);
       }
     });
   }
