@@ -23,6 +23,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RouterModule.forRoot([
       {path: 'welcome', component: WelcomeComponent},
       {path: 'login', component: LoginComponent},
+      
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ]),
