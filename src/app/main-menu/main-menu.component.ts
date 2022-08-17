@@ -17,6 +17,9 @@ export class MainMenuComponent implements OnInit {
       console.log("show logout button");
       this.showLogoutButton = true;
     }
+
+
+
   }
 
 }
